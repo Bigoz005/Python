@@ -1,15 +1,14 @@
-# <table class="table footable footable-loaded">
-
+import bs4 as bs
 import urllib.request
-from bs4 import BeautifulSoup
+import re
 
-# https://pythonprogramming.net/parsememcparseface/
-sauce = urllib.request.urlopen("https://www.gpw.pl/archiwum-notowan-full?type=10&instrument&date=05-10-2018&fbclid=IwAR3IqduBrwSnW6cAmmJnfgNTpPExFLuc27S3Vv8c5DbVM_SLKAv49I0zszI/").read()
-soup = BeautifulSoup(sauce, 'lxml')
+source = urllib.request.urlopen('https://www.gpw.pl/archiwum-notowan-full?type=10&instrument&date=05-10-2018').read()
+soup = bs.BeautifulSoup(source, 'lxml')
 
-table = soup.find('table', {"class":"table footable footable-loaded"})
+table = soup.table
+table_rows = soup.find_all(re.compile('tr'))
 
-for tr in table.findAll('tr'):
-    row = [i.text for i in tr.findAll('th')]
-
+for tr in table_rows:
+    td = tr.find_all('td')
+    row = [i.text for i in td]
     print(row)
