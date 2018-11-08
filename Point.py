@@ -8,4 +8,3 @@
 #   - w przypadku liczby wiekszej od 0, miejszej od 10 zwraca komunikat "0-10",
 #   zmienna x przyjmuje wpisana wartosc
 #   - w przypadku liczby wiekszej od 10 zwraca zmienna x
-
